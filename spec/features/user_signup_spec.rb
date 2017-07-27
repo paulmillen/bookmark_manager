@@ -19,7 +19,7 @@ feature 'User signup and registration' do
   scenario 'email is blank' do
     expect { sign_up(email: nil) }.not_to change(User, :count)
     expect(current_path).to eq('/users')
-    expect(page).to have_content('')
+    expect(page).not_to have_content('Welcome')
   end
 
   scenario 'email is invalid' do
@@ -33,7 +33,5 @@ feature 'User signup and registration' do
     expect { sign_up }.not_to change(User, :count)
     expect(page).to have_content 'Email is already taken'
   end
-
-
 
 end
