@@ -15,4 +15,15 @@ feature 'User signup and registration' do
     expect(page).not_to have_content 'Welcome, barney@barney.com'
     expect(page).to have_content 'Password and confirmation password do not match'
   end
+
+  scenario 'email is blank' do
+    expect { sign_up(email: nil) }.not_to change(User, :count)
+  end
+
+  scenario 'email is invalid' do
+    expect { sign_up(email: "invalid@email") }.not_to change(User, :count)
+  end
+
+
+
 end
